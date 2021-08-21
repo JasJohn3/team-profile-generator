@@ -1,8 +1,8 @@
-const Employee = require('../lib/Employee');
+const Manager = require('../lib/Manager');
 test(`creates a Manager Object`, () => {
-  const employee = new Employee('John Doe',1,'johndoe@email.com', 'Manager');
-  expect(employee.name).toBe('John Doe');
-  expect(employee.id).toBe(1);
-  expect(employee.email).toBe('johndoe@email.com');
-  expect(employee.role).toBe('Manager');
+  const manager = new Manager('John Doe',1,'johndoe@email.com');
+  expect(manager.name).toBe('John Doe');
+  expect(manager.id).toBe(1);
+  expect(manager.email).toBe('johndoe@email.com');
+  expect(manager.role).toBe('Manager');
 });
