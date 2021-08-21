@@ -1,9 +1,9 @@
-const Employee = require('../lib/Employee');
+const Intern = require('../lib/Intern');
 
 test(`creates a Intern Object`, () => {
-  const employee = new Employee('John Doe',1,'johndoe@email.com');
-  expect(employee.name).toBe('John Doe');
-  expect(employee.id).toBe(1);
-  expect(employee.email).toBe('johndoe@email.com');
-  expect(employee.role).toBe('Intern');
+  const intern = new Intern('John Doe',1,'johndoe@email.com');
+  expect(intern.name).toBe('John Doe');
+  expect(intern.id).toBe(1);
+  expect(intern.email).toBe('johndoe@email.com');
+  expect(intern.role).toBe('Intern');
 });
