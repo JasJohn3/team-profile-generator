@@ -3,22 +3,26 @@ const generateTeam = (teamArr) => {
   
   for (let index = 0; index < teamArr.length; index++) {
     const element = teamArr[index];
-    console.log(element);
-      return `
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">${element.name}</h4>
-              <p class="card-text">${element.role}</p>
-              <a class="btn btn-primary" href="mailto:${element.email}">${element.email}</a>
-            </div>
-          </div>
-        </div>
-      `
-    }  
+    const {name,role,email} = element;
+    createCard(name,role,email);
+    }
+    console.log('________________Generate Team Data Received________________');  
   }
+function createCard(name,role,email){
+  let card = `
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">${name}</h4>
+        <p class="card-text">${role}</p>
+        <a class="btn btn-primary" href="mailto:${email}">${email}</a>
+      </div>
+    </div>
+  </div>
+  `;
+  return card;
+}
 
-  console.log('________________Generate Team Data Received________________');
     // teamArr.find(team => team.role ==='Manager').map((member) => {
     //   const {name, email, role, officenumber} = member;
     //   console.log(member);
