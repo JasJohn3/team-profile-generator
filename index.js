@@ -156,15 +156,4 @@ const questions = [
   },
 ];
 
-inquirer
-  .prompt(questions)
-  .then((answers) => {
-    fs.writeFileSync(
-      path.resolve(__dirname, './answers.json'),
-      JSON.stringify(answers)
-    );
-    console.log('Answers saved to answers.json');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+managerPrompt();
