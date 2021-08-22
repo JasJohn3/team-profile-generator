@@ -1,11 +1,10 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const path = require('path');
 const employeeArray = [];
 const Manager = require('./lib/Manager.js');
 const Intern = require('./lib/Intern.js');
 const Engineer = require('./lib/Engineer.js');
-
+const writeFile = require('./utils/writeFile.js');
+const htmlGenerator = require('./src/htmlGenerator.js');
 
 const managerPrompt = () => {
   
@@ -207,3 +206,5 @@ managerPrompt()
 .then(() => {
   console.log(employeeArray);
 });
+
+writeFile(htmlGenerator(employeeArray));
