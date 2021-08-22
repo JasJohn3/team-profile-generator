@@ -7,32 +7,37 @@ const writeFile = require('./utils/writeFile.js');
 const htmlGenerator = require('./src/htmlGenerator.js');
 
 const managerPrompt = () => {
-  
   return inquirer.prompt([
     {
       type: 'input',
-      name: 'manager',
+      name: 'name',
       message: 'What is the Team Manager name?',
     },
     {
       //Ask for the employee email
       type: 'input',
-      name: 'managerEID',
+      name: 'id',
       message: 'What is the Manager Employee ID?',
     },
     {
       //Ask for the employee email
       type: 'input',
-      name: 'managerEmail',
+      name: 'email',
       message: 'What is the Manager email?',
     },
     {
       //Ask for the employee email
       type: 'input',
-      name: 'managerOID',
+      name: 'officenumber',
       message: 'What is the Manager Office Number?',
     },
-  ]);
+  ])
+  .then((answers)=>{
+    const {name, id, email, officenumber} = answers;
+    const manager = new Manager(name, id, email, officenumber);
+    employeeArray.push(manager);
+    console.log(employeeArray);
+  });
 }
 const promptTeam = teamData => {
   // If there's no 'projects' array property, create one
@@ -67,7 +72,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'engineerName',
+        name: 'name',
         message: 'What is the Engineers Name?',
         when: ({role}) => {
           if (role === 'Engineer') {
@@ -79,7 +84,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'engineerEID',
+        name: 'id',
         message: 'What is the Engineers Employee ID?',
         when: ({role}) => {
           if (role === 'Engineer') {
@@ -91,7 +96,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'engineerEmail',
+        name: 'email',
         message: 'What is the Engineers Email?',
         when: ({role}) => {
           if (role === 'Engineer') {
@@ -103,7 +108,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'engineerGithub',
+        name: 'github',
         message: 'What is the Engineers Github?',
         when: ({role}) => {
           if (role === 'Engineer') {
@@ -115,7 +120,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'internName',
+        name: 'name',
         message: 'What is the intern Name?',
         when: ({role}) => {
           if (role === 'Intern') {
@@ -127,7 +132,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'internEID',
+        name: 'id',
         message: 'What is the intern Employee ID?',
         when: ({role}) => {
           if (role === 'Intern') {
@@ -139,7 +144,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'internEmail',
+        name: 'email',
         message: 'What is the intern Email?',
         when: ({role}) => {
           if (role === 'Intern') {
@@ -151,7 +156,7 @@ const promptTeam = teamData => {
       },
       {
         type: 'input',
-        name: 'internSchool',
+        name: 'school',
         message: 'What is the Interns school?',
         when: ({role}) => {
           if (role === 'Intern') {
@@ -166,12 +171,14 @@ const promptTeam = teamData => {
     ]).then((answers)=>{
       console.log(answers);
       if(answers.role === 'Engineer'){
-        const engineer = new Engineer(answers.engineerName, answers.engineerEID,answers.engineerEmail,answers.engineerGithub);
+        const {name, id, email, github} = answers;
+        const engineer = new Engineer(name, id, email, github);
         employeeArray.push(engineer);
         console.log(employeeArray);
       }
       if(answers.role === 'Intern'){
-        const intern = new Intern(answers.internName, answers.internEID,answers.internEmail,answers.internSchool);
+        const {name, id, email, school} = answers;
+        const intern = new Intern(name, id, email, school);
         employeeArray.push(intern);
         console.log(employeeArray);
       }
@@ -197,14 +204,7 @@ const promptAddAnotherTeamMember = () => {
 }
 
 managerPrompt()
-.then((answers)=>{
-  const manager = new Manager(answers.manager, answers.managerEID,answers.managerEmail,answers.managerOID);
-  employeeArray.push(manager);
-  console.log(employeeArray);
-})
 .then(promptTeam)
-.then(() => {
-  console.log(employeeArray);
+.then(()=>{
+  writeFile(htmlGenerator(employeeArray));
 });
-
-writeFile(htmlGenerator(employeeArray));

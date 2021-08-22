@@ -1,62 +1,76 @@
 const generateTeam = (teamArr) => {
-  console.log(teamArr);
-  teamArr.map((team) => {
-    switch (team.role) {
-      case 'Manager':
-        return `
-        <div class="team">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">${team.role}: ${team.name}</li>
-            <li class="list-group-item">          
-              <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
-              ${team.email}</a>
-            </li>
-            <li class="list-group-item">Employee ID: ${team.id}</li>
-            <li class="list-group-item">Office: ${team.officenumber}</li>
-          </ul>
+  console.log('________________Generate Team Method Start________________');
+  
+  for (let index = 0; index < teamArr.length; index++) {
+    const element = teamArr[index];
+    console.log(element);
+      return `
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">${element.name}</h4>
+              <p class="card-text">${element.role}</p>
+              <a class="btn btn-primary" href="mailto:${element.email}">${element.email}</a>
+            </div>
+          </div>
         </div>
-      `;
-      break;
-      case 'Engineer':
-        return `
-        <div class="team">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">${team.role}: ${team.name}</li>
-            <li class="list-group-item">          
-              <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
-              ${team.email}</a>
-            </li>
-            <li class="list-group-item">Employee ID: ${team.id}</li>
-            <li class="list-group-item">
-            <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="${team.github}">
-              Github
-            </a>
-            </li>
-          </ul>
-        </div>
-      `;
-      break;
-      case 'Intern':
-        return `
-        <div class="team">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">${team.role}: ${team.name}</li>
-            <li class="list-group-item">          
-              <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
-              ${team.email}</a>
-            </li>
-            <li class="list-group-item">${team.id}</li>
-            <li class="list-group-item">School: ${team.school}</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-      `;
-      break;
-      default:
-        break;
-    }
-  });
-};
+      `
+    }  
+  }
+
+  console.log('________________Generate Team Data Received________________');
+    // teamArr.find(team => team.role ==='Manager').map((member) => {
+    //   const {name, email, role, officenumber} = member;
+    //   console.log(member);
+    //   return `
+    //   <div class="team">
+    //     <ul class="list-group list-group-flush">
+    //       <li class="list-group-item">${role}: ${name}</li>
+    //       <li class="list-group-item">          
+    //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${email}">
+    //         ${email}</a>
+    //       </li>
+    //       <li class="list-group-item">Employee ID: ${id}</li>
+    //       <li class="list-group-item">Office: ${officenumber}</li>
+    //     </ul>
+    //   </div>
+    // `;
+    // });
+
+      //   return `
+      //   <div class="team">
+      //     <ul class="list-group list-group-flush">
+      //       <li class="list-group-item">${team.role}: ${team.name}</li>
+      //       <li class="list-group-item">          
+      //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
+      //         ${team.email}</a>
+      //       </li>
+      //       <li class="list-group-item">Employee ID: ${team.id}</li>
+      //       <li class="list-group-item">
+      //       <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="${team.github}">
+      //         Github
+      //       </a>
+      //       </li>
+      //     </ul>
+      //   </div>
+      // `;
+
+      //   return `
+      //   <div class="team">
+      //     <ul class="list-group list-group-flush">
+      //       <li class="list-group-item">${team.role}: ${team.name}</li>
+      //       <li class="list-group-item">          
+      //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
+      //         ${team.email}</a>
+      //       </li>
+      //       <li class="list-group-item">${team.id}</li>
+      //       <li class="list-group-item">School: ${team.school}</li>
+      //       <li class="list-group-item">Vestibulum at eros</li>
+      //     </ul>
+      //   </div>
+      // `;
+
+
 const generateHTML = templateData => {
   console.log(templateData);
   const html =`
