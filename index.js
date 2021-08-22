@@ -1,31 +1,44 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
+const employeeArray = [];
+const Manager = require('./lib/Manager.js');
 
+const managerPrompt = () => {
+  
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'manager',
+      message: 'What is the Team Manager name?',
+    },
+    {
+      //Ask for the employee email
+      type: 'input',
+      name: 'managerEID',
+      message: 'What is the Manager Employee ID?',
+    },
+    {
+      //Ask for the employee email
+      type: 'input',
+      name: 'managerEmail',
+      message: 'What is the Manager email?',
+    },
+    {
+      //Ask for the employee email
+      type: 'input',
+      name: 'managerOID',
+      message: 'What is the Manager Office Number?',
+    },
+  ])
+  .then((answers)=>{
+    const manager = new Manager(answers.manager, answers.managerEID,answers.managerEmail,answers.managerOID);
+    employeeArray.push(manager);
+    console.log(employeeArray);
+  });
+}
 const questions = [
-  {
-    type: 'input',
-    name: 'manager',
-    message: 'What is the Team Manager name?',
-  },
-  {
-    //Ask for the employee email
-    type: 'input',
-    name: 'managerEID',
-    message: 'What is the Manager Employee ID?',
-  },
-  {
-    //Ask for the employee email
-    type: 'input',
-    name: 'managerEmail',
-    message: 'What is the Manager email?',
-  },
-  {
-    //Ask for the employee email
-    type: 'input',
-    name: 'managerOID',
-    message: 'What is the Manager Office Number?',
-  },
+
   {
     type: 'confirm',
     name: 'addEmployee',
