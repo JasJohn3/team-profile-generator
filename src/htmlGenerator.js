@@ -3,12 +3,13 @@ const generateTeam = (teamArr) => {
   
   for (let index = 0; index < teamArr.length; index++) {
     const element = teamArr[index];
-    const {name,role,email} = element;
-    createCard(name,role,email);
+    console.log(element);
+    createCard(element);
     }
     console.log('________________Generate Team Data Received________________');  
   }
-function createCard(name,role,email){
+function createCard(element){
+  const {name,role,email} = element;
   let card = `
   <div class="col-md-4">
     <div class="card">
