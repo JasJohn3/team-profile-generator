@@ -1,23 +1,45 @@
 const generateTeam = (teamArr) => {
   console.log('________________Generate Team Method Start________________');
-  teamArr.map(element => {
-    console.log(element);
-    return createCard(element);
+let teamCardArray = teamArr.map(element => {
+    if(element.getRole() === 'Manager'){
+      return createCard(element, managerCard(element));
+    }else if(element.getRole() === 'Engineer'){
+      return createCard(element, engineerCard(element));
+    }else if(element.getRole() === 'Intern'){
+      return createCard(element, internCard(element));
+    }else{
+      console.log('Something Went Wrong!')
+    }
   });
-
-    console.log('________________Generate Team Data Received________________');  
+  console.log('________________Generate Team Data Received________________');
+  return teamCardArray.join('');
+      
   }
-function createCard(element){
+function managerCard(element){
+  let {officeNumber} = element;
+  return `<p>Office Number: ${officeNumber}</p>`
+}
+function engineerCard(element){
+  let {github} = element;
+  return `<p>github: ${github}</p>`
+}
+function internCard(element){
+  let {school} = element;
+  return `<p>School: ${school}</p>`
+}
+
+function createCard(element, roleSpecial){
   
   console.log('Card: ');
   console.log(element);
   let card = `
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">${element.name}</h4>
         <p class="card-text">${element.role}</p>
         <a class="btn btn-primary" href="mailto:${element.email}">${element.email}</a>
+        ${roleSpecial}
       </div>
     </div>
   </div>
@@ -124,7 +146,9 @@ const generateHTML = templateData => {
     <main>
       <div class="container flex-row justify-space-between align-center"> 
         <h1 class="page-title text-light bg-dark px-3 text-center">Team Generator</h1>
-        ${generateTeam(templateData)}
+        <div class="row">
+          ${generateTeam(templateData)}
+        </div>
       </div>
     </main> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>

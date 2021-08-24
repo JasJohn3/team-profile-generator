@@ -5,7 +5,7 @@ test(`creates a Manager Object`, () => {
   expect(manager.id).toEqual(expect.any(Number));
   expect(manager.email).toEqual(expect.any(String));
   expect(manager.role).toBe('Manager');
-  expect(manager.officenumber).toEqual(expect.any(Number));
+  expect(manager.officeNumber).toEqual(expect.any(Number));
 
   expect(manager.getRole()).toBe('Manager');
 });
