@@ -1,35 +1,38 @@
 const generateTeam = (teamArr) => {
   console.log('________________Generate Team Method Start________________');
-let teamCardArray = teamArr.map(element => {
-    if(element.getRole() === 'Manager'){
+  let teamCardArray = teamArr.map((element) => {
+    if (element.getRole() === 'Manager') {
       return createCard(element, managerCard(element));
-    }else if(element.getRole() === 'Engineer'){
+    } else if (element.getRole() === 'Engineer') {
       return createCard(element, engineerCard(element));
-    }else if(element.getRole() === 'Intern'){
+    } else if (element.getRole() === 'Intern') {
       return createCard(element, internCard(element));
-    }else{
-      console.log('Something Went Wrong!')
+    } else {
+      console.log('Something Went Wrong!');
     }
   });
   console.log('________________Generate Team Data Received________________');
   return teamCardArray.join('');
-      
-  }
-function managerCard(element){
-  let {officeNumber} = element;
-  return `<p>Office Number: ${officeNumber}</p>`
+};
+function managerCard(element) {
+  let { officeNumber } = element;
+  return `<p>Office Number: ${officeNumber}</p>`;
 }
-function engineerCard(element){
-  let {github} = element;
-  return `<p>github: ${github}</p>`
+function engineerCard(element) {
+  let { github } = element;
+  return `
+  <p>
+    <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="${github}">
+      Github
+    </a>
+  </p>`;
 }
-function internCard(element){
-  let {school} = element;
-  return `<p>School: ${school}</p>`
+function internCard(element) {
+  let { school } = element;
+  return `<p>School: ${school}</p>`;
 }
 
-function createCard(element, roleSpecial){
-  
+function createCard(element, roleSpecial) {
   console.log('Card: ');
   console.log(element);
   let card = `
@@ -38,7 +41,7 @@ function createCard(element, roleSpecial){
       <div class="card-body">
         <h4 class="card-title">${element.name}</h4>
         <p class="card-text">${element.role}</p>
-        <a class="btn btn-primary" href="mailto:${element.email}">${element.email}</a>
+        <a class="btn btn-primary my-3" href="mailto:${element.email}">${element.email}</a>
         ${roleSpecial}
       </div>
     </div>
@@ -54,63 +57,60 @@ function createCard(element, roleSpecial){
 //     const manager = element.Manager;
 //   }
 //   console.log(element);
-  
+
 //   }
-    // teamArr.find(team => team.role ==='Manager').map((member) => {
-    //   const {name, email, role, officenumber} = member;
-    //   console.log(member);
-    //   return `
-    //   <div class="team">
-    //     <ul class="list-group list-group-flush">
-    //       <li class="list-group-item">${role}: ${name}</li>
-    //       <li class="list-group-item">          
-    //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${email}">
-    //         ${email}</a>
-    //       </li>
-    //       <li class="list-group-item">Employee ID: ${id}</li>
-    //       <li class="list-group-item">Office: ${officenumber}</li>
-    //     </ul>
-    //   </div>
-    // `;
-    // });
+// teamArr.find(team => team.role ==='Manager').map((member) => {
+//   const {name, email, role, officenumber} = member;
+//   console.log(member);
+//   return `
+//   <div class="team">
+//     <ul class="list-group list-group-flush">
+//       <li class="list-group-item">${role}: ${name}</li>
+//       <li class="list-group-item">
+//         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${email}">
+//         ${email}</a>
+//       </li>
+//       <li class="list-group-item">Employee ID: ${id}</li>
+//       <li class="list-group-item">Office: ${officenumber}</li>
+//     </ul>
+//   </div>
+// `;
+// });
 
-      //   return `
-      //   <div class="team">
-      //     <ul class="list-group list-group-flush">
-      //       <li class="list-group-item">${team.role}: ${team.name}</li>
-      //       <li class="list-group-item">          
-      //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
-      //         ${team.email}</a>
-      //       </li>
-      //       <li class="list-group-item">Employee ID: ${team.id}</li>
-      //       <li class="list-group-item">
-      //       <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="${team.github}">
-      //         Github
-      //       </a>
-      //       </li>
-      //     </ul>
-      //   </div>
-      // `;
+//   return `
+//   <div class="team">
+//     <ul class="list-group list-group-flush">
+//       <li class="list-group-item">${team.role}: ${team.name}</li>
+//       <li class="list-group-item">
+//         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
+//         ${team.email}</a>
+//       </li>
+//       <li class="list-group-item">Employee ID: ${team.id}</li>
+//       <li class="list-group-item">
 
-      //   return `
-      //   <div class="team">
-      //     <ul class="list-group list-group-flush">
-      //       <li class="list-group-item">${team.role}: ${team.name}</li>
-      //       <li class="list-group-item">          
-      //         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
-      //         ${team.email}</a>
-      //       </li>
-      //       <li class="list-group-item">${team.id}</li>
-      //       <li class="list-group-item">School: ${team.school}</li>
-      //       <li class="list-group-item">Vestibulum at eros</li>
-      //     </ul>
-      //   </div>
-      // `;
+//       </li>
+//     </ul>
+//   </div>
+// `;
 
+//   return `
+//   <div class="team">
+//     <ul class="list-group list-group-flush">
+//       <li class="list-group-item">${team.role}: ${team.name}</li>
+//       <li class="list-group-item">
+//         <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="mailto:${team.email}">
+//         ${team.email}</a>
+//       </li>
+//       <li class="list-group-item">${team.id}</li>
+//       <li class="list-group-item">School: ${team.school}</li>
+//       <li class="list-group-item">Vestibulum at eros</li>
+//     </ul>
+//   </div>
+// `;
 
-const generateHTML = templateData => {
+const generateHTML = (templateData) => {
   console.log(templateData);
-  const html =`
+  const html = `
   <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -120,7 +120,6 @@ const generateHTML = templateData => {
     <meta name="Description" content="Enter your description here"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <title>Title</title>
     </head>
     <body>
@@ -160,6 +159,6 @@ const generateHTML = templateData => {
     </html>
   `;
   return html;
-}
+};
 
 module.exports = generateHTML;
